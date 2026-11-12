@@ -70,7 +70,7 @@ uint8_t mapper_read_prg (uint16_t adress) {
 
 }
 
-void mapper_write_prg (uint16_t adress, uint8_t val) {
+void mapper_write_prg (uint16_t adress, uint8_t arg) {
     if (adress >= 0x8000) {
         bank_atual = val;
         printf("%d\n", bank_atual);

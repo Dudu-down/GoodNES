@@ -10,7 +10,7 @@ typedef struct {
     uint8_t y; /*indice y*/
     uint16_t pc; /*program counter*/
     uint8_t s; /*stack pointer*/
-    uint8_t f;
+    uint8_t f; /*status flag, preciso mudar para ativar ou desativar cada flag individual*/
 } cpu_register;
 
 static cpu_register cpu;
