@@ -16,5 +16,5 @@ uint8_t bus_read(uint16_t adress) {
 void bus_write(uint16_t adress, uint8_t arg) {
     if (adress >= 0x8000) {
         mapper_write_prg(adress, arg);
-    }
+    };
 }

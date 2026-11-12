@@ -14,29 +14,38 @@ typedef struct {
 } cpu_register;
 
 static cpu_register cpu;
-static status_offset = 0x0100; /*status ou stack?*/
+static uint8_t stack_page = 0x01;
+static uint8_t ram_page = 0x00;
 
 uint16_t reset_read(){
-    return (bus_read(0xFFFD) << 8) | bus_read(0xFFFC); /*ler bit fiddling dps*/
+    return (bus_read(0xFFFD) << 8) + bus_read(0xFFFC); /*ler bit fiddling dps*/
 
-}
+};
 
 void cpu_init(){
     cpu.a = cpu.x = cpu.y = 0;
-    cpu.pc = reset_read;
+    cpu.pc = reset_read();
     cpu.s = 0x00 - 3;
     cpu.f = 0;
-}
 
-uint8_t cpu_fetch(uint16_t adress) {
-    return bus_read(adress);
-}
+    printf("%4X", cpu.pc);
+    printf("%2X", cpu.s);
+};
 
-void cpu_decode(uint8_t opcode) {
-    switch (opcode) { /*entra opcode, destina instrução correta e pc++*/
+uint8_t cpu_fetch() {
+    uint8_t byte = bus_read(cpu.pc);
+    cpu.pc++;
+    return byte;
+};
+
+/*void cpu_decode(uint8_t opcode) {
+    switch (opcode) { entra opcode, destina instrução correta e pc++
         case 
-    }
-}
+    };
+} */
+
+
+
 
 /*começar com modo de enderessamento, ler e entender melhor na documentação.*/
 
