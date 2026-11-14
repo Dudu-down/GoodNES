@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "bus.h"
+#include"ram"
 
 typedef struct {
     uint8_t a; /*acumulador*/
@@ -27,6 +28,7 @@ void cpu_init(){
     cpu.pc = reset_read();
     cpu.s = 0x00 - 3;
     cpu.f = 0;
+    ram_garbage();
 
     printf("%4X", cpu.pc);
     printf("%2X", cpu.s);
